@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="21.2.8.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v21.2, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="Report1" DisplayName="DossierMonitor" ScriptsSource="int count = 0;&#xD;&#xA;int currentPage = 0;&#xD;&#xA;&#xD;&#xA;private void label6_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    string displayAndMore = &quot;en meer...&quot;;&#xD;&#xA;string displayText = string.Format(&quot;{0}, {1}, {2}, {3}, {4}&quot;,&#xD;&#xA;        GetCurrentColumnValue(&quot;DOSSIER_NR&quot;),&#xD;&#xA;        GetCurrentColumnValue(&quot;MW_AFKORTING&quot;),&#xD;&#xA;        GetCurrentColumnValue(&quot;OPDR1_AFKORTING&quot;),&#xD;&#xA;        GetCurrentColumnValue(&quot;VERZEGTYPE_Display&quot;),&#xD;&#xA;        GetCurrentColumnValue(&quot;DatumIncident&quot;));&#xD;&#xA;&#xD;&#xA; string existingText = &quot;&quot;;&#xD;&#xA;    count ++;&#xD;&#xA;object paramValue = this.Parameters[&quot;OtherDossiers&quot;].Value;&#xD;&#xA;if (paramValue != null)&#xD;&#xA;    existingText = paramValue.ToString();&#xD;&#xA;&#xD;&#xA;    if (count &lt; 6)&#xD;&#xA;    {&#xD;&#xA;        if (!string.IsNullOrEmpty(existingText))&#xD;&#xA;            existingText += Environment.NewLine + displayText;&#xD;&#xA;        else&#xD;&#xA;            existingText = displayText;&#xD;&#xA;    }&#xD;&#xA;    &#xD;&#xA;    if (count == 6)&#xD;&#xA;    {&#xD;&#xA;        existingText += Environment.NewLine + displayAndMore;&#xD;&#xA;    }&#xD;&#xA;    this.Parameters[&quot;OtherDossiers&quot;].Value = existingText;&#xD;&#xA;    this.Tag = existingText;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    currentPage++;&#xD;&#xA;     bool printOnePageOnly = Convert.ToBoolean(GetCurrentColumnValue(&quot;PrintOnePageOnly&quot;));&#xD;&#xA;    if (printOnePageOnly  &amp;&amp; currentPage &gt; 1) {&#xD;&#xA;        ((Band)sender).Visible = false;&#xD;&#xA;    } else {&#xD;&#xA;        ((Band)sender).Visible = true;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    currentPage++;&#xD;&#xA;    //if (currentPage &gt; 1) {&#xD;&#xA;        //((Band)sender).Visible = false;&#xD;&#xA;   // } else {&#xD;&#xA;        //((Band)sender).Visible = true;&#xD;&#xA;    //}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    currentPage++;&#xD;&#xA;    //if (currentPage &gt; 1) {&#xD;&#xA;       // ((Band)sender).Visible = false;&#xD;&#xA;   // } else {&#xD;&#xA;       // ((Band)sender).Visible = true;&#xD;&#xA;    //}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand4_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    //currentPage++;&#xD;&#xA;    //if (currentPage &gt; 1) {&#xD;&#xA;        //((Band)sender).Visible = false;&#xD;&#xA;    //} else {&#xD;&#xA;        //((Band)sender).Visible = true;&#xD;&#xA;    //}&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand5_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    int BetrokkenenDossiers = Convert.ToInt32(GetCurrentColumnValue(&quot;Betrokkenen_Dossiers&quot;));&#xD;&#xA;&#xD;&#xA;if (BetrokkenenDossiers == 1 &amp;&amp; currentPage &gt; 1) {&#xD;&#xA;        ((Band)sender).Visible = false;&#xD;&#xA;    } else {&#xD;&#xA;        ((Band)sender).Visible = true;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand6_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    bool printOnePageOnly = Convert.ToBoolean(GetCurrentColumnValue(&quot;PrintOnePageOnly&quot;));&#xD;&#xA;    if (printOnePageOnly) {&#xD;&#xA;        ((Band)sender).Visible = true;&#xD;&#xA;    } else {&#xD;&#xA;        ((Band)sender).Visible = false;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;private void SubBand7_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e) {&#xD;&#xA;    bool printOnePageOnly = Convert.ToBoolean(GetCurrentColumnValue(&quot;PrintOnePageOnly&quot;));&#xD;&#xA;    if (printOnePageOnly) {&#xD;&#xA;        ((Band)sender).Visible = false;&#xD;&#xA;    } else {&#xD;&#xA;        ((Band)sender).Visible = true;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;" Margins="6, 6, 14, 8" PageWidth="850" PageHeight="1100" Version="21.2" FilterString="[_PK_DossierId] = ?DossierId And [COMPANY] = ?CompanyCode And [PrintOnePageOnly] = ?PrintOnePageOnly" DataMember="Table_Dossiers_01" DataSource="#Ref-0" Font="Arial, 9.75pt">
+  <Parameters>
+    <Item1 Ref="3" Description="DossierId" ValueInfo="115365" Name="DossierId" Type="#Ref-2" />
+    <Item2 Ref="5" Description="CompanyCode" ValueInfo="99" Name="CompanyCode" />
+    <Item3 Ref="7" Description="PrintOnePageOnly" ValueInfo="False" Name="PrintOnePageOnly" Type="#Ref-6" />
+    <Item4 Ref="8" Visible="false" Description="OtherDossiers" Name="OtherDossiers" />
+  </Parameters>
+  <CalculatedFields>
+    <Item1 Ref="9" Name="DatumIncident" FieldType="DateTime" Expression="Iif(IsNull([DATUM_ONGE]), [DATUMNTTXT], FormatString('{0:dd-MM-yyyy}', [DATUM_ONGE]))&#xA;" />
+  </CalculatedFields>
+  <Bands>
+    <Item1 Ref="10" ControlType="TopMarginBand" Name="TopMargin" HeightF="14.166667" />
+    <Item2 Ref="11" ControlType="DetailBand" Name="Detail" PageBreak="AfterBand" HeightF="7.5">
+      <SubBands>
+        <Item1 Ref="12" ControlType="SubBand" Name="SubBand1" HeightF="115.166687">
+          <Scripts Ref="13" OnBeforePrint="SubBand1_BeforePrint" />
+          <Controls>
+            <Item1 Ref="14" ControlType="XRLabel" Name="label1" Multiline="true" Text="Doorloopvel" SizeF="175.333328,27.99998" LocationFloat="4.33333063,0" Font="Arial, 16pt" Padding="2,2,0,0,100">
+              <StylePriority Ref="15" UseFont="false" />
+            </Item1>
+            <Item2 Ref="16" ControlType="XRLabel" Name="label25" Multiline="true" Text="label25" TextAlignment="TopRight" SizeF="445,23" LocationFloat="229.333328,30.1666718" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="17" EventName="BeforePrint" PropertyName="Text" Expression="[Betrokkenen_Display] + ' (' + [Betrokkene_Geslacht] + ')'&#xA;" />
+              </ExpressionBindings>
+              <StylePriority Ref="18" UseFont="false" UseTextAlignment="false" />
+            </Item2>
+            <Item3 Ref="19" ControlType="XRLabel" Name="label6" Multiline="true" Text="label6" SizeF="95.8333359,26.6666641" LocationFloat="3.33333349,88.5" Padding="2,2,0,0,100" Visible="false">
+              <Scripts Ref="20" OnBeforePrint="label6_BeforePrint" />
+            </Item3>
+            <Item4 Ref="21" ControlType="XRSubreport" Name="subreport1" ReportSourceUrl="~\Reports\HomeAddress.repx" SizeF="817.333252,23" LocationFloat="0,56.1666679">
+              <ParameterBindings>
+                <Item1 Ref="22" ParameterName="Dossier_Id" DataMember="Table_Dossiers_01.BETROKKEN1" />
+              </ParameterBindings>
+            </Item4>
+            <Item5 Ref="23" ControlType="XRLabel" Name="label3" TextFormatString="{0:dd-MM-yyyy}" Multiline="true" Text="label3" TextAlignment="TopRight" SizeF="215.6666,33" LocationFloat="458.666748,82.16669" Font="Arial, 18pt, style=Bold" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="24" EventName="BeforePrint" PropertyName="Text" Expression="[Betrokkenen_GEB_DATUM]" />
+              </ExpressionBindings>
+              <StylePriority Ref="25" UseFont="false" UseTextAlignment="false" />
+            </Item5>
+            <Item6 Ref="26" ControlType="XRLabel" Name="label2" Multiline="true" Text="label2" TextAlignment="TopRight" SizeF="397.5,23" LocationFloat="276.833344,5.166667" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="27" EventName="BeforePrint" PropertyName="Text" Expression="[DOSSIER_NR]" />
+              </ExpressionBindings>
+              <StylePriority Ref="28" UseFont="false" UseTextAlignment="false" />
+            </Item6>
+            <Item7 Ref="29" ControlType="XRLabel" Name="label4" Multiline="true" Text="geboren:" TextAlignment="TopRight" SizeF="139.166656,23" LocationFloat="319.500031,82.16669" Font="Arial, 14pt" Padding="2,2,0,0,100">
+              <StylePriority Ref="30" UseFont="false" UseTextAlignment="false" />
+            </Item7>
+          </Controls>
+        </Item1>
+        <Item2 Ref="31" ControlType="SubBand" Name="SubBand2" HeightF="46.49999">
+          <Scripts Ref="32" OnBeforePrint="SubBand2_BeforePrint" />
+          <Controls>
+            <Item1 Ref="33" ControlType="XRLabel" Name="label23" Multiline="true" Text="label23" TextAlignment="TopRight" SizeF="416.833344,23" LocationFloat="263.166656,2" Font="Arial, 10pt" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="34" EventName="BeforePrint" PropertyName="Text" Expression="?OtherDossiers" />
+              </ExpressionBindings>
+              <StylePriority Ref="35" UseFont="false" UseTextAlignment="false" />
+            </Item1>
+          </Controls>
+        </Item2>
+        <Item3 Ref="36" ControlType="SubBand" Name="SubBand3" HeightF="47.3333244">
+          <Scripts Ref="37" OnBeforePrint="SubBand3_BeforePrint" />
+          <Controls>
+            <Item1 Ref="38" ControlType="XRSubreport" Name="subreport2" ReportSourceUrl="~\Reports\Acties.repx" SizeF="808.1666,26.6666679" LocationFloat="5.66666937,10">
+              <ParameterBindings>
+                <Item1 Ref="39" ParameterName="Dossier_Id" DataMember="Table_Dossiers_01._PK_DossierId" />
+              </ParameterBindings>
+            </Item1>
+          </Controls>
+        </Item3>
+        <Item4 Ref="40" ControlType="SubBand" Name="SubBand4" HeightF="140.000015">
+          <Scripts Ref="41" OnBeforePrint="SubBand4_BeforePrint" />
+          <Controls>
+            <Item1 Ref="42" ControlType="XRLabel" Name="label21" Multiline="true" Text="label21" TextAlignment="TopLeft" SizeF="394.333221,18" LocationFloat="364.333344,122.000015" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="43" EventName="BeforePrint" PropertyName="Text" Expression="[Betrokkenen_Dossiers]" />
+              </ExpressionBindings>
+              <StylePriority Ref="44" UseFont="false" UseForeColor="false" UseTextAlignment="false" />
+            </Item1>
+            <Item2 Ref="45" ControlType="XRLabel" Name="label20" Multiline="true" Text="Aantal dossiers:" SizeF="108.166672,18" LocationFloat="256.1667,122.000015" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="46" UseFont="false" UseForeColor="false" />
+            </Item2>
+            <Item3 Ref="47" ControlType="XRLabel" Name="label19" Multiline="true" Text="Datum incident:" SizeF="108.166672,18" LocationFloat="256.1667,104" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="48" UseFont="false" UseForeColor="false" />
+            </Item3>
+            <Item4 Ref="49" ControlType="XRLabel" Name="label18" TextFormatString="{0:d}" Multiline="true" Text="label18" SizeF="316.833282,18" LocationFloat="364.333374,103.999992" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="50" EventName="BeforePrint" PropertyName="Text" Expression="[DATUM_ONGE]" />
+              </ExpressionBindings>
+              <StylePriority Ref="51" UseFont="false" UseForeColor="false" />
+            </Item4>
+            <Item5 Ref="52" ControlType="XRLabel" Name="label16" Multiline="true" Text="OG2:" SizeF="108.166672,18" LocationFloat="256.1667,85.99998" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="53" UseFont="false" UseForeColor="false" />
+            </Item5>
+            <Item6 Ref="54" ControlType="XRLabel" Name="label17" Multiline="true" Text="label14" SizeF="394.333221,18" LocationFloat="364.333344,85.99996" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="55" EventName="BeforePrint" PropertyName="Text" Expression="[OPDR2_Bedrijfsnaam]" />
+              </ExpressionBindings>
+              <StylePriority Ref="56" UseFont="false" UseForeColor="false" />
+            </Item6>
+            <Item7 Ref="57" ControlType="XRLabel" Name="label15" Multiline="true" Text="label15" SizeF="394.333221,18" LocationFloat="364.333344,67.99998" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="58" EventName="BeforePrint" PropertyName="Text" Expression="[OPDR1_NaamPersoon]" />
+              </ExpressionBindings>
+              <StylePriority Ref="59" UseFont="false" UseForeColor="false" />
+            </Item7>
+            <Item8 Ref="60" ControlType="XRLabel" Name="label14" Multiline="true" Text="label14" SizeF="316.833282,18" LocationFloat="364.333374,50" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="61" EventName="BeforePrint" PropertyName="Text" Expression="[OPDR1_Bedrijfsnaam]" />
+              </ExpressionBindings>
+              <StylePriority Ref="62" UseFont="false" UseForeColor="false" />
+            </Item8>
+            <Item9 Ref="63" ControlType="XRLabel" Name="label13" Multiline="true" Text="OG1:" SizeF="108.166672,18" LocationFloat="256.1667,50" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="64" UseFont="false" UseForeColor="false" />
+            </Item9>
+            <Item10 Ref="65" ControlType="XRLabel" Name="label12" Multiline="true" Text="label12" SizeF="394.333221,25" LocationFloat="364.333344,25" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="66" EventName="BeforePrint" PropertyName="Text" Expression="[VERZEGTYPE_Display]" />
+              </ExpressionBindings>
+              <StylePriority Ref="67" UseFont="false" />
+            </Item10>
+            <Item11 Ref="68" ControlType="XRLabel" Name="label11" Multiline="true" Text="Kader:" SizeF="108.166672,25" LocationFloat="256.1667,25" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="69" UseFont="false" />
+            </Item11>
+            <Item12 Ref="70" ControlType="XRLabel" Name="label9" Multiline="true" Text="label9" SizeF="100,25" LocationFloat="364.333374,0" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="71" EventName="BeforePrint" PropertyName="Text" Expression="[MA_AFKORTING]" />
+              </ExpressionBindings>
+              <StylePriority Ref="72" UseFont="false" />
+            </Item12>
+            <Item13 Ref="73" ControlType="XRLabel" Name="label8" Multiline="true" Text="Contactpersoon:" SizeF="108.166672,18" LocationFloat="256.166626,68" Font="Arial, 10pt, style=Italic" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="74" UseFont="false" UseForeColor="false" />
+            </Item13>
+            <Item14 Ref="75" ControlType="XRLabel" Name="label7" Multiline="true" Text="MA:" SizeF="108.166672,25" LocationFloat="256.166626,0" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+              <StylePriority Ref="76" UseFont="false" />
+            </Item14>
+            <Item15 Ref="77" ControlType="XRSubreport" Name="subreport5" ReportSourceUrl="~\Reports\MA_Name.repx" SizeF="331.6666,23" LocationFloat="464.3334,2.00002" />
+          </Controls>
+        </Item4>
+        <Item5 Ref="78" ControlType="SubBand" Name="SubBand5" HeightF="21.00001">
+          <Scripts Ref="79" OnBeforePrint="SubBand5_BeforePrint" />
+          <Controls>
+            <Item1 Ref="80" ControlType="XRLabel" Name="label5" Multiline="true" Text="label5" SizeF="394.3331,18" LocationFloat="364.3334,0" Font="Arial, 10pt" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <ExpressionBindings>
+                <Item1 Ref="81" EventName="BeforePrint" PropertyName="Text" Expression="?OtherDossiers" />
+              </ExpressionBindings>
+              <StylePriority Ref="82" UseFont="false" UseForeColor="false" />
+            </Item1>
+            <Item2 Ref="83" ControlType="XRLabel" Name="label22" Multiline="true" Text="Andere dossiers:" SizeF="109.166672,18" LocationFloat="255.1667,0" Font="Arial, 10pt" ForeColor="255,127,127,127" Padding="2,2,0,0,100">
+              <StylePriority Ref="84" UseFont="false" UseForeColor="false" />
+            </Item2>
+          </Controls>
+        </Item5>
+        <Item6 Ref="85" ControlType="SubBand" Name="SubBand6" HeightF="70">
+          <Scripts Ref="86" OnBeforePrint="SubBand6_BeforePrint" />
+          <Controls>
+            <Item1 Ref="87" ControlType="XRSubreport" Name="subreport3" ReportSourceUrl="~\Reports\Subreport.repx" SizeF="823,28.833313" LocationFloat="0,36.333374">
+              <ParameterBindings>
+                <Item1 Ref="88" ParameterName="DossierId" DataMember="Table_Dossiers_01.Betrokkenen_Dossiers" />
+                <Item2 Ref="89" ParameterName="PrintOnePageOnly" DataMember="Table_Dossiers_01.PrintOnePageOnly" />
+              </ParameterBindings>
+            </Item1>
+          </Controls>
+        </Item6>
+        <Item7 Ref="90" ControlType="SubBand" Name="SubBand7" HeightF="65.8333359">
+          <Scripts Ref="91" OnBeforePrint="SubBand7_BeforePrint" />
+          <Controls>
+            <Item1 Ref="92" ControlType="XRSubreport" Name="subreport4" ReportSourceUrl="~\Reports\SubReport2.repx" SizeF="818.1666,22.9999981" LocationFloat="0,39.5">
+              <ParameterBindings>
+                <Item1 Ref="93" ParameterName="DossierId" DataMember="Table_Dossiers_01.Betrokkenen_Dossiers" />
+              </ParameterBindings>
+            </Item1>
+          </Controls>
+        </Item7>
+      </SubBands>
+    </Item2>
+    <Item3 Ref="94" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="7.5" />
+    <Item4 Ref="95" ControlType="PageFooterBand" Name="PageFooter" HeightF="39.1666679">
+      <Controls>
+        <Item1 Ref="96" ControlType="XRLabel" Name="label10" Multiline="true" Text="label10" SizeF="144.166672,25.49998" LocationFloat="9.000003,8.333333" Font="Arial, 10pt" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="97" EventName="BeforePrint" PropertyName="Text" Expression="Now()" />
+          </ExpressionBindings>
+          <StylePriority Ref="98" UseFont="false" />
+        </Item1>
+        <Item2 Ref="99" ControlType="XRPageInfo" Name="pageInfo1" TextAlignment="TopCenter" SizeF="100,23" LocationFloat="353,7.5" Padding="2,2,0,0,100">
+          <StylePriority Ref="100" UseTextAlignment="false" />
+        </Item2>
+        <Item3 Ref="101" ControlType="XRLabel" Name="label24" Multiline="true" Text="Startdatum:________" SizeF="155.833252,23" LocationFloat="640.166748,7.5" Font="Arial, 10pt" Padding="2,2,0,0,100">
+          <StylePriority Ref="102" UseFont="false" />
+        </Item3>
+      </Controls>
+    </Item4>
+  </Bands>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v21.2" Ref="2" Content="System.Int32" Type="System.Type" />
+    <Item2 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v21.2" Ref="6" Content="System.Boolean" Type="System.Type" />
+    <Item3 Ref="0" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v21.2" Name="jsonDataSource2" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMiI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5VcmlKc29uU291cmNlIiBVcmk9ImZpbGU6Ly8vQzovVXNlcnMvY290b20vc291cmNlL3JlcG9zL0RYQXBwbGljYXRpb24zL0RYQXBwbGljYXRpb24zL2Jpbi9EZWJ1Zy9tZWRhc3Rlc3QuanNvbiIgLz48U2NoZW1hPjxOb2RlIE5hbWU9InJvb3QiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iT2JqZWN0Ij48Tm9kZSBOYW1lPSJUYWJsZV9Eb3NzaWVyc18wMSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJBcnJheSI+PE5vZGUgTmFtZT0iX1BLX0Rvc3NpZXJJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJDT01QQU5ZIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkRPU1NJRVJfTlIiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iT1BEUjFfQmVkcmlqZnNuYWFtIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJldHJva2tlbmVuX0Rvc3NpZXJzIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJFVFJPS0tFTjEiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQmV0cm9ra2VuZW5fRGlzcGxheSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJCZXRyb2trZW5lbl9HRUJfREFUVU0iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5EYXRlVGltZV0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQmV0cm9ra2VuZW5fRGVjZWFzZWRZbiIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Ik1BX0FGS09SVElORyIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJCZXRyb2trZW5lX0dlc2xhY2h0IiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Ik9QRFIxX05hYW1QZXJzb29uIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IlByaW50T25lUGFnZU9ubHkiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5Cb29sZWFuXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJEQVRVTV9PTkdFIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IlZFUlpFR1RZUEVfRGlzcGxheSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJPUERSMl9CZWRyaWpmc25hYW0iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PC9Ob2RlPjxOb2RlIE5hbWU9IlRhYmxlX0JldHJva2tlbmVuXzAxIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJIb21lQWRkcmVzc1BsYWNlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Il9QS19CZXRyb2trZW5lSWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQ09NUEFOWSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PE5vZGUgTmFtZT0iVGFibGVfTUVERVdFUktFUlNfMDEiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iQXJyYXkiPjxOb2RlIE5hbWU9IlZPT1JOQUFNIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkFDSFRFUk5BQU0iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iVFVTU0VOVk9FR19WYWx1ZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PE5vZGUgTmFtZT0iVGFibGVfQWN0aWVzXzAxIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJSQVBQRURBVFVNIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkFGR0VIQU5ERUwiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5Cb29sZWFuXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJTVEFURSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJTUE9FRFZSQUFHIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iX0ZLX0Rvc3NpZXJJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJDT01QQU5ZIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkFzc19BQ1RJRVRZUEUiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PC9Ob2RlPjxOb2RlIE5hbWU9IlRhYmxlX0FydGlrZWxncm9lcF8wMSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJBcnJheSI+PE5vZGUgTmFtZT0iQXJ0aWtlbHR5cGUiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iX1BLX0FydGlrZWxncm9lcCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PE5vZGUgTmFtZT0iVGFibGVfRG9zc2llck1vbml0b3JfMDEiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iQXJyYXkiPjxOb2RlIE5hbWU9IlNvcnRQcmlvcml0eSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJEb3NzaWVyQWN0aW9uVGV4dCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJET1NTSUVSX05SIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkRvc3NpZXJBY3Rpb24iIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iX1BLX01vbml0b3JJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJRQV9Nb2RpZnlUaW1lIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uRGF0ZVRpbWVdIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkRlc2NyaXB0aW9uIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IlFBX0Z1bmN0aW9uRmlsdGVyIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PC9Ob2RlPjwvTm9kZT48L1NjaGVtYT48L0pzb25EYXRhU291cmNlPg==" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>

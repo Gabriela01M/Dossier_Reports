@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XtraReportsLayoutSerializer SerializerVersion="24.2.3.0" Ref="1" ControlType="DevExpress.XtraReports.UI.XtraReport, DevExpress.XtraReports.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Name="XtraReport" DisplayName="Acties" ScriptsSource="&#xD;&#xA;private void RappelDateLabel_BeforePrint(object sender, System.ComponentModel.CancelEventArgs e) {&#xD;&#xA;    DateTime rappelDate = Convert.ToDateTime(GetCurrentColumnValue(&quot;RAPPEDATUM&quot;));&#xD;&#xA;&#xD;&#xA;    string displayDay = rappelDate.Day.ToString(&quot;D2&quot;); &#xD;&#xA;    string displayMonth = string.Empty;&#xD;&#xA;&#xD;&#xA;    switch (rappelDate.Month)&#xD;&#xA;    {&#xD;&#xA;        case 1: displayMonth = &quot;jan&quot;; break;&#xD;&#xA;        case 2: displayMonth = &quot;feb&quot;; break;&#xD;&#xA;        case 3: displayMonth = &quot;mrt&quot;; break;&#xD;&#xA;        case 4: displayMonth = &quot;apr&quot;; break;&#xD;&#xA;        case 5: displayMonth = &quot;mei&quot;; break;&#xD;&#xA;        case 6: displayMonth = &quot;jun&quot;; break;&#xD;&#xA;        case 7: displayMonth = &quot;jul&quot;; break;&#xD;&#xA;        case 8: displayMonth = &quot;aug&quot;; break;&#xD;&#xA;        case 9: displayMonth = &quot;sept&quot;; break;&#xD;&#xA;        case 10: displayMonth = &quot;okt&quot;; break;&#xD;&#xA;        case 11: displayMonth = &quot;nov&quot;; break;&#xD;&#xA;        case 12: displayMonth = &quot;dec&quot;; break;&#xD;&#xA;        default: displayMonth = &quot;&quot;; break;&#xD;&#xA;    }&#xD;&#xA;&#xD;&#xA;    string displayYear = rappelDate.Year.ToString(&quot;D4&quot;); &#xD;&#xA;   &#xD;&#xA;    string result = string.Format(&quot;{0}-{1}-{2}&quot;, displayDay, displayMonth, displayYear);&#xD;&#xA;&#xD;&#xA;        this.RappelDateLabel.Text = result;&#xD;&#xA;}&#xD;&#xA;" Margins="6, 21, 0, 0" PageWidth="850" PageHeight="1100" Version="24.2" FilterString="[_FK_DossierId] = ?Dossier_Id" DataMember="Table_Acties_01" DataSource="#Ref-0">
+  <Extensions>
+    <Item1 Ref="2" Key="DataSerializationExtension" Value="XtraReport" />
+    <Item2 Ref="3" Key="DataEditorExtension" Value="XtraReport" />
+    <Item3 Ref="4" Key="ParameterEditorExtension" Value="XtraReport" />
+  </Extensions>
+  <Parameters>
+    <Item1 Ref="6" Visible="false" Description="Parameter1" ValueInfo="0" Name="Dossier_Id" Type="#Ref-5" />
+  </Parameters>
+  <CalculatedFields>
+    <Item1 Ref="7" Name="TaskType" FieldType="String" Expression="Iif([Table_Acties_01].[SPOEDVRAAG], [Table_Acties_01].[Ass_ACTIETYPE] + ' &lt;b&gt;(SPOED)&lt;/b&gt;', [Table_Acties_01].[Ass_ACTIETYPE])&#xA;" />
+    <Item2 Ref="8" Name="calculatedField1" DataMember="Table_Acties_01" />
+  </CalculatedFields>
+  <Bands>
+    <Item1 Ref="9" ControlType="TopMarginBand" Name="TopMargin" HeightF="0" />
+    <Item2 Ref="10" ControlType="DetailBand" Name="Detail" HeightF="28.6666565">
+      <Controls>
+        <Item1 Ref="11" ControlType="XRLabel" Name="RappelDateLabel" Multiline="true" Text="RappelDateLabel" TextAlignment="TopLeft" SizeF="108.333313,23" LocationFloat="398.8333,0" Font="Arial, 10pt" Padding="2,2,0,0,100">
+          <Scripts Ref="12" OnBeforePrint="RappelDateLabel_BeforePrint" />
+          <StylePriority Ref="13" UseFont="false" UseTextAlignment="false" />
+        </Item1>
+        <Item2 Ref="14" ControlType="XRLabel" Name="label3" Multiline="true" Text="label3" SizeF="118.499969,23" LocationFloat="254.333344,0" Font="Arial, 10pt" Padding="2,2,0,0,100">
+          <ExpressionBindings>
+            <Item1 Ref="15" EventName="BeforePrint" PropertyName="Text" Expression="[Ass_ACTIETYPE]" />
+          </ExpressionBindings>
+          <StylePriority Ref="16" UseFont="false" />
+        </Item2>
+      </Controls>
+    </Item2>
+    <Item3 Ref="17" ControlType="BottomMarginBand" Name="BottomMargin" HeightF="0" />
+    <Item4 Ref="18" ControlType="ReportHeaderBand" Name="ReportHeader" HeightF="25">
+      <Controls>
+        <Item1 Ref="19" ControlType="XRLabel" Name="label1" Multiline="true" Text="Taak MA" SizeF="118.5,23" LocationFloat="254.333313,0" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="20" UseFont="false" />
+        </Item1>
+        <Item2 Ref="21" ControlType="XRLabel" Name="label2" Multiline="true" Text="Einddatum" TextAlignment="TopLeft" SizeF="108.333313,23" LocationFloat="398.8333,0" Font="Arial, 14pt, style=Bold" Padding="2,2,0,0,100">
+          <StylePriority Ref="22" UseFont="false" UseTextAlignment="false" />
+        </Item2>
+      </Controls>
+    </Item4>
+    <Item5 Ref="23" ControlType="GroupHeaderBand" Name="GroupHeader1" Expanded="false">
+      <GroupFields>
+        <Item1 Ref="24" FieldName="RAPPEDATUM" />
+      </GroupFields>
+    </Item5>
+  </Bands>
+  <ParameterPanelLayoutItems>
+    <Item1 Ref="25" LayoutItemType="Parameter" Parameter="#Ref-6" />
+  </ParameterPanelLayoutItems>
+  <ComponentStorage>
+    <Item1 Ref="0" ObjectType="DevExpress.DataAccess.Json.JsonDataSource,DevExpress.DataAccess.v24.2" Name="jsonDataSource1" Base64="PEpzb25EYXRhU291cmNlIE5hbWU9Impzb25EYXRhU291cmNlMSI+PFNvdXJjZSBTb3VyY2VUeXBlPSJEZXZFeHByZXNzLkRhdGFBY2Nlc3MuSnNvbi5VcmlKc29uU291cmNlIiBVcmk9ImZpbGU6Ly8vQzovVXNlcnMvY290b20vRG93bmxvYWRzL0Rvc3NpZXIgbW9uaXRvci9tZWRhc3Rlc3QuanNvbiIgLz48U2NoZW1hPjxOb2RlIE5hbWU9InJvb3QiIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iT2JqZWN0Ij48Tm9kZSBOYW1lPSJUYWJsZV9Eb3NzaWVyc18wMSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iQXJyYXkiPjxOb2RlIE5hbWU9Il9QS19Eb3NzaWVySWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkNPTVBBTlkiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkRPU1NJRVJfTlIiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Ik9QRFIxX0JlZHJpamZzbmFhbSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQmV0cm9ra2VuZW5fRG9zc2llcnMiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJFVFJPS0tFTjEiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJldHJva2tlbmVuX0Rpc3BsYXkiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJldHJva2tlbmVuX0dFQl9EQVRVTSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkRhdGVUaW1lXSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQmV0cm9ra2VuZW5fRGVjZWFzZWRZbiIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJNQV9BRktPUlRJTkciIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkJldHJva2tlbmVfR2VzbGFjaHQiIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Ik9QRFIxX05hYW1QZXJzb29uIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJQcmludE9uZVBhZ2VPbmx5IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IkRBVFVNX09OR0UiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5EYXRlVGltZV0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IlZFUlpFR1RZUEVfRGlzcGxheSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iT1BEUjJfQmVkcmlqZnNuYWFtIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PE5vZGUgTmFtZT0iVGFibGVfQmV0cm9ra2VuZW5fMDEiIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJIb21lQWRkcmVzc1BsYWNlIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJfUEtfQmV0cm9ra2VuZUlkIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJDT01QQU5ZIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48L05vZGU+PE5vZGUgTmFtZT0iVGFibGVfTUVERVdFUktFUlNfMDEiIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJWT09STkFBTSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQUNIVEVSTkFBTSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iVFVTU0VOVk9FR19WYWx1ZSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PC9Ob2RlPjxOb2RlIE5hbWU9IlRhYmxlX0FjdGllc18wMSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJBcnJheSI+PE5vZGUgTmFtZT0iUkFQUEVEQVRVTSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkRhdGVUaW1lXSIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJBRkdFSEFOREVMIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iU1RBVEUiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iU1BPRURWUkFBRyIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkJvb2xlYW5dIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9Il9GS19Eb3NzaWVySWQiIFR5cGU9IlN5c3RlbS5OdWxsYWJsZWAxW1N5c3RlbS5JbnQ2NF0iIFNlbGVjdGVkPSJ0cnVlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iQ09NUEFOWSIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9InRydWUiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJBc3NfQUNUSUVUWVBFIiBUeXBlPSJTeXN0ZW0uU3RyaW5nIiBTZWxlY3RlZD0idHJ1ZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjwvTm9kZT48Tm9kZSBOYW1lPSJUYWJsZV9BcnRpa2VsZ3JvZXBfMDEiIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IkFycmF5Ij48Tm9kZSBOYW1lPSJBcnRpa2VsdHlwZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iX1BLX0FydGlrZWxncm9lcCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PC9Ob2RlPjxOb2RlIE5hbWU9IlRhYmxlX0Rvc3NpZXJNb25pdG9yXzAxIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJBcnJheSI+PE5vZGUgTmFtZT0iU29ydFByaW9yaXR5IiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uSW50NjRdIiBTZWxlY3RlZD0iZmFsc2UiIE5vZGVUeXBlPSJQcm9wZXJ0eSIgLz48Tm9kZSBOYW1lPSJEb3NzaWVyQWN0aW9uVGV4dCIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iRE9TU0lFUl9OUiIgVHlwZT0iU3lzdGVtLlN0cmluZyIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iRG9zc2llckFjdGlvbiIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iX1BLX01vbml0b3JJZCIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkludDY0XSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iUUFfTW9kaWZ5VGltZSIgVHlwZT0iU3lzdGVtLk51bGxhYmxlYDFbU3lzdGVtLkRhdGVUaW1lXSIgU2VsZWN0ZWQ9ImZhbHNlIiBOb2RlVHlwZT0iUHJvcGVydHkiIC8+PE5vZGUgTmFtZT0iRGVzY3JpcHRpb24iIFR5cGU9IlN5c3RlbS5TdHJpbmciIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjxOb2RlIE5hbWU9IlFBX0Z1bmN0aW9uRmlsdGVyIiBUeXBlPSJTeXN0ZW0uTnVsbGFibGVgMVtTeXN0ZW0uQm9vbGVhbl0iIFNlbGVjdGVkPSJmYWxzZSIgTm9kZVR5cGU9IlByb3BlcnR5IiAvPjwvTm9kZT48L05vZGU+PC9TY2hlbWE+PC9Kc29uRGF0YVNvdXJjZT4=" />
+  </ComponentStorage>
+  <ObjectStorage>
+    <Item1 ObjectType="DevExpress.XtraReports.Serialization.ObjectStorageInfo, DevExpress.XtraReports.v24.2" Ref="5" Content="System.Int32" Type="System.Type" />
+  </ObjectStorage>
+</XtraReportsLayoutSerializer>
