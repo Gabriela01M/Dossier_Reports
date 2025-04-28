@@ -35,8 +35,9 @@ namespace DXApplication3
     {
       
       XRDesignForm designForm = new XRDesignForm();
+      DevExpress.DataAccess.Native.Json.JsonLoaderHelper.ProcessingLibrary = DevExpress.DataAccess.Native.Json.JsonLoaderHelper.JsonProcessingLibrary.NewtonsoftJson;
 
-     
+
       XRDesignMdiController mdiController = designForm.DesignMdiController;
 
       
