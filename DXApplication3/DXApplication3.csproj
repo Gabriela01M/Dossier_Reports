@@ -32,17 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.BonusSkins.v21.2" />
-    <Reference Include="DevExpress.Data.Desktop.v21.2" />
-    <Reference Include="DevExpress.Data.v21.2" />
-    <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.DataAccess.v21.2.UI, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v21.2" />
-    <Reference Include="DevExpress.Sparkline.v21.2.Core" />
-    <Reference Include="DevExpress.XtraEditors.v21.2" />
-    <Reference Include="DevExpress.Printing.v21.2.Core" />
-    <Reference Include="DevExpress.XtraReports.v21.2, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraReports.v21.2.Extensions, Version=21.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.BonusSkins.v24.2" />
+    <Reference Include="DevExpress.Data.Desktop.v24.2" />
+    <Reference Include="DevExpress.Drawing.v24.2" />
+    <Reference Include="DevExpress.Data.v24.2" />
+    <Reference Include="DevExpress.DataAccess.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v24.2.UI, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v24.2" />
+    <Reference Include="DevExpress.Sparkline.v24.2.Core" />
+    <Reference Include="DevExpress.XtraEditors.v24.2" />
+    <Reference Include="DevExpress.Printing.v24.2.Core" />
+    <Reference Include="DevExpress.Charts.v24.2.Core, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v24.2, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v24.2.Extensions, Version=24.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>

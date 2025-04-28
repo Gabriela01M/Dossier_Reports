@@ -56,20 +56,20 @@ namespace DXApplication3
         try
         {
           XtraReport report = XtraReport.FromFile(filePath, true);
-          string originalDataMember = report.DataMember;
-          report.DataSource = null;
-          report.DataMember = null;
-          report.ComponentStorage.Clear();
+          //string originalDataMember = report.DataMember;
+          //report.DataSource = null;
+          //report.DataMember = null;
+          //report.ComponentStorage.Clear();
           report.DisplayName = Path.GetFileNameWithoutExtension(filePath);
 
-          string jsonPath = Path.Combine(Application.StartupPath, "medastest.json");
+          //string jsonPath = Path.Combine(Application.StartupPath, "medastest.json");
 
-          JsonDataSource jsonDataSource = new JsonDataSource();
-          jsonDataSource.JsonSource = new UriJsonSource(new Uri(jsonPath, UriKind.Absolute));
-          jsonDataSource.Fill();
+          //JsonDataSource jsonDataSource = new JsonDataSource();
+          //jsonDataSource.JsonSource = new UriJsonSource(new Uri(jsonPath, UriKind.Absolute));
+          //jsonDataSource.Fill();
 
-          report.DataSource = jsonDataSource;
-          report.DataMember = originalDataMember;
+          //report.DataSource = jsonDataSource;
+          //report.DataMember = originalDataMember;
 
           mdiController.OpenReport(report);
         }
